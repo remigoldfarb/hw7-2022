@@ -9,14 +9,72 @@ window.addEventListener("load", function() {
 
 });
 
- document.querySelector("#play").addEventListener("click", function() {
+document.querySelector("#play").addEventListener("click", function() {
  	console.log("Play Video");
-	document.querySelector("#volume").innerHTML= video.volume *100 + "%"
+	document.querySelector("#volume").innerHTML = video.volume *100 + "%"
 	video.play()
- });
+});
  
- document.querySelector("#pause").addEventListener("click", function() {
+document.querySelector("#pause").addEventListener("click", function() {
 	console.log("Pause Video");
-   video.pause()
+	video.pause()
 });
 
+document.querySelector("#slower").addEventListener("click", function() {
+	console.log("Slow down video");
+	video.playbackRate *= 0.90;
+	console.log("Speed is", video.playbackRate);
+});
+
+document.querySelector("#faster").addEventListener("click", function() {
+	console.log("Speed up Video");
+	video.playbackRate /= 0.90;
+	console.log("Speed is", video.playbackRate);
+});
+
+document.querySelector("#skip").addEventListener("click", function() {
+	video.currentTime += 10;
+	if (video.currentTime >= video.duration) {
+			video.currentTime = 0;
+	}
+
+	console.log("Current location is " + video.currentTime + " seconds")
+});
+	
+document.querySelector("#mute").addEventListener("click", function() {
+	
+	if (video.muted == true) {
+			console.log("Unmute");
+			video.muted = false;
+			this.innerHTML = "Mute";
+	}
+	else {
+		console.log("Mute");
+		video.muted = true;
+		this.innerHTML = "Unmute";
+	}
+
+});
+
+document.querySelector("#slider").addEventListener("click", function() {
+	video.volume = this.value / 100;
+	document.querySelector("#volume").innerHTML = video.volume * 100 + "%"
+
+});
+
+
+document.querySelector("#vintage").addEventListener("click", function() {
+	console.log("Apply old school class")
+	video.classList.add("oldSchool")
+
+
+
+});
+
+document.querySelector("#orig").addEventListener("click", function() {
+	console.log("Apply old school class")
+	video.classList.remove("oldSchool")
+
+
+
+});
